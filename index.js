@@ -4,7 +4,7 @@ var fs = require('fs')
 var url = require('url')
 
 var router = {
-  '/getData': function(req, res){
+  '/getnumber': function(req, res){
       var pathObj = url.parse(req.url, true)
 
       var page = pathObj.query.page
@@ -20,11 +20,13 @@ var router = {
       res.write(JSON.stringify(result))
       res.end()    
   },
-  '/hello': function(req, res){
-    res.end('hello world')
-  } 
+  '/getage': function(req, res){
+    res.end('I am 18 ')
+  },
+  '/getname': function(req, res){
+    res.end('xiaoming')
+  }
 }
-
 
 var server = http.createServer(function(req, res){
   var staticPath = path.join(__dirname, 'www')
@@ -40,7 +42,7 @@ var server = http.createServer(function(req, res){
       router[pathObj.pathname](req, res)
     }else{
       res.writeHead(404, 'not found')
-      res.end('not found')      
+      res.end('not found try other one')      
     }
   }
 
